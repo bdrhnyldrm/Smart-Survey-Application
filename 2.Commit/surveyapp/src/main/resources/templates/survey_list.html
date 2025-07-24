@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Anket Listesi</title>
+</head>
+<body>
+
+<!-- Sayfa başlığı -->
+<h1>Mevcut Anketler</h1>
+
+<!-- Eğer sistemde hiç anket yoksa kullanıcıya bilgi ver -->
+<div th:if="${#lists.isEmpty(surveys)}">
+    <p>Şu anda sistemde hiç anket bulunmamaktadır.</p>
+</div>
+
+<!-- Anket listesi varsa burası çalışır -->
+<ul th:if="${!#lists.isEmpty(surveys)}">
+
+    <!-- Her bir survey nesnesi için bir <li> oluşturulur -->
+    <li th:each="survey : ${surveys}">
+        <!-- Anket başlığına tıklanınca detay sayfasına gider -->
+        <a th:href="@{/survey/{id}(id=${survey.id})}"
+           th:text="${survey.title}">
+            Anket Başlığı
+        </a>
+    </li>
+
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Paneli</title>
+</head>
+<body>
+
+<h1>Admin Paneli</h1>
+
+<a href="/admin/create">+ Yeni Anket Ekle</a>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Başlık</th>
+        <th>Aktif mi?</th>
+        <th>İşlemler</th>
+    </tr>
+    <tr th:each="survey : ${surveys}">
+        <td th:text="${survey.id}"></td>
+        <td th:text="${survey.title}"></td>
+        <td th:text="${survey.active}"></td>
+        <td>
+            <a th:href="@{/admin/delete/{id}(id=${survey.id})}" onclick="return confirm('Silmek istediğinize emin misiniz?')">Sil</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
