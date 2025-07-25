@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${survey.title}">Anket</title>
+</head>
+<body>
+
+<h1 th:text="${survey.title}">Anket Başlığı</h1>
+
+<form th:action="@{/survey/{id}/answer(id=${survey.id})}" method="post">
+
+    <div th:each="question : ${survey.questions}">
+        <h3 th:text="${question.text}">Soru</h3>
+
+        <ul>
+            <li th:each="choice : ${question.choices}">
+                <input type="radio"
+                       th:name="'question_' + ${question.id}"
+                       th:value="${choice.id}" required/>
+                <span th:text="${choice.text}">Şık</span>
+            </li>
+        </ul>
+    </div>
+
+    <button type="submit">Gönder</button>
+</form>
+
+</body>
+</html>

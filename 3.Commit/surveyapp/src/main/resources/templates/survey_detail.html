@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${survey.title}">Anket Başlığı</title>
+</head>
+<body>
+
+<!-- Anketin başlığı -->
+<h1 th:text="${survey.title}">Anket Başlığı</h1>
+
+<!-- Her bir soru ve onun seçenekleri listelenir -->
+<div th:each="question : ${survey.questions}">
+    <!-- Soru metni -->
+    <h3 th:text="${question.text}">Soru</h3>
+
+    <!-- Seçenek listesi -->
+    <ul>
+        <!-- Her bir şık için bir <li> -->
+        <li th:each="choice : ${question.choices}" th:text="${choice.text}">Şık</li>
+    </ul>
+</div>
+
+<!-- Ankete katılma butonu -->
+<!-- Kullanıcıyı cevaplama formuna yönlendirir -->
+<form th:action="@{/survey/{id}/answer(id=${survey.id})}" method="get">
+    <button type="submit">Ankete Katıl</button>
+</form>
+
+</body>
+</html>
