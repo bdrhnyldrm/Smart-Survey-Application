@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Giriş Yap</title>
+</head>
+<body>
+
+<h1>Giriş Yap</h1>
+
+<form method="post" th:action="@{/login}">
+    <label for="username">Kullanıcı Adı:</label><br>
+    <input type="text" id="username" name="username" required /><br><br>
+
+    <label for="password">Şifre:</label><br>
+    <input type="password" id="password" name="password" required /><br><br>
+
+    <button type="submit">Giriş Yap</button>
+</form>
+
+<!-- Hatalı giriş mesajı -->
+<p th:if="${error}" th:text="${error}" style="color:red;"></p>
+
+<!-- Kayıt bağlantısı -->
+<p>Hesabınız yok mu? <a th:href="@{/register}">Kayıt olun</a></p>
+
+</body>
+</html>

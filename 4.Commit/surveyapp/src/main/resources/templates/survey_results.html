@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${survey.title} + ' - Sonuçlar'">Sonuçlar</title>
+</head>
+<body>
+
+<h1 th:text="${survey.title} + ' - Anket Sonuçları'">Anket Sonuçları</h1>
+
+<div th:each="question : ${survey.questions}">
+    <h3 th:text="${question.text}">Soru</h3>
+
+    <ul>
+        <li th:each="choice : ${question.choices}">
+            <span th:text="${choice.text}">Seçenek</span>
+            :
+            <span th:text="${choiceVoteCounts[choice.id]}">0</span> oy
+            (
+            <span th:if="${questionTotalVotes[question.id] > 0}"
+                  th:text="${(choiceVoteCounts[choice.id] * 100.0 / questionTotalVotes[question.id]) + '%'}">0%</span>
+            <span th:if="${questionTotalVotes[question.id] == 0}">0%</span>
+            )
+        </li>
+    </ul>
+</div>
+
+<a href="/">← Ana Sayfa</a>
+
+</body>
+</html>

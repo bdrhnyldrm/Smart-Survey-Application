@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Anket Cevaplama</title>
+</head>
+<body>
+
+<h1 th:text="${survey.title}">Anket Başlığı</h1>
+
+<form th:action="@{'/survey/' + ${survey.id} + '/answer'}" method="post">
+
+    <div th:each="question, qStat : ${survey.questions}">
+        <!-- Soru metni -->
+        <h3 th:text="${question.text}">Soru</h3>
+
+        <!-- Çoktan seçmeli şıklar -->
+        <ul>
+            <li th:each="choice : ${question.choices}">
+                <label>
+                    <input type="radio"
+                           th:name="'choiceId[' + ${qStat.index} + ']'"
+                           th:value="${choice.id}"
+                           required />
+                    <span th:text="${choice.text}">Şık</span>
+                </label>
+            </li>
+        </ul>
+
+        <!-- Sorunun ID'si gizli alan olarak formda gönderilir -->
+        <input type="hidden"
+               th:name="'questionId[' + ${qStat.index} + ']'"
+               th:value="${question.id}" />
+    </div>
+
+    <br>
+    <button type="submit">Cevapları Gönder</button>
+</form>
+
+</body>
+</html>

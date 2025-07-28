@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Yeni Anket Oluştur</title>
+
+    <script>
+        function addQuestionBlock() {
+            const container = document.getElementById("questions");
+
+            const questionDiv = document.createElement("div");
+            questionDiv.className = "question-block";
+
+            const qLabel = document.createElement("label");
+            qLabel.textContent = "Soru:";
+            questionDiv.appendChild(qLabel);
+
+            const qInput = document.createElement("input");
+            qInput.type = "text";
+            qInput.name = "questionTexts";
+            qInput.placeholder = "Soru metni";
+            qInput.required = true;
+            questionDiv.appendChild(document.createElement("br"));
+            questionDiv.appendChild(qInput);
+
+            for (let i = 1; i <= 3; i++) {
+                const cInput = document.createElement("input");
+                cInput.type = "text";
+                cInput.name = "choiceTexts";
+                cInput.placeholder = "Şık " + i;
+                cInput.required = true;
+                questionDiv.appendChild(document.createElement("br"));
+                questionDiv.appendChild(cInput);
+            }
+
+            container.appendChild(document.createElement("hr"));
+            container.appendChild(questionDiv);
+        }
+    </script>
+</head>
+<body>
+
+<h1>Yeni Anket Oluştur</h1>
+
+<form th:action="@{/admin/create}" th:object="${survey}" method="post">
+
+    <label for="title">Anket Başlığı:</label><br>
+    <input type="text" id="title" th:field="*{title}" required />
+    <br><br>
+
+    <div id="questions">
+        <div class="question-block">
+            <label>Soru:</label><br>
+            <input type="text" name="questionTexts" placeholder="Soru metni" required /><br>
+            <input type="text" name="choiceTexts" placeholder="Şık 1" required /><br>
+            <input type="text" name="choiceTexts" placeholder="Şık 2" required /><br>
+            <input type="text" name="choiceTexts" placeholder="Şık 3" required />
+        </div>
+    </div>
+
+    <br>
+    <button type="button" onclick="addQuestionBlock()">+ Soru Ekle</button>
+    <br><br>
+
+    <button type="submit">Anketi Kaydet</button>
+</form>
+
+<br>
+<a href="/admin/panel">← Admin Paneline Dön</a>
+
+</body>
+</html>
