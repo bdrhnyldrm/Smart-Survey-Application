@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Admin Paneli</title>
+</head>
+<body>
+<section>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">Admin Paneli</h2>
+        <a href="/admin/create" class="btn btn-success">+ Yeni Anket Ekle</a>
+    </div>
+
+    <!-- Anket yoksa bilgilendirme -->
+    <div th:if="${#lists.isEmpty(surveys)}" class="alert alert-info text-center">
+        Şu anda sistemde hiç anket yok.
+    </div>
+
+    <!-- Anket listesi -->
+    <div th:if="${!#lists.isEmpty(surveys)}">
+        <table class="table table-bordered table-hover text-center align-middle">
+            <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Başlık</th>
+                <th>Aktif mi?</th>
+                <th>İşlemler</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="survey : ${surveys}">
+                <td th:text="${survey.id}"></td>
+                <td th:text="${survey.title}"></td>
+                <td>
+                        <span th:text="${survey.active ? 'Evet' : 'Hayır'}"
+                              th:classappend="${survey.active} ? 'text-success' : 'text-danger'">
+                        </span>
+                </td>
+                <td>
+                    <div class="d-flex justify-content-center gap-2 flex-wrap">
+                        <!-- Sonuçlar -->
+                        <a th:href="@{/survey/{id}/results(id=${survey.id})}"
+                           class="btn btn-sm btn-outline-primary">Sonuçlar</a>
+
+                        <!-- Yayın durumu değiştir -->
+                        <form th:action="@{/admin/toggle/{id}(id=${survey.id})}" method="post">
+                            <button type="submit"
+                                    th:text="${survey.active} ? 'Pasifleştir' : 'Yayınla'"
+                                    class="btn btn-sm btn-outline-warning">
+                            </button>
+                        </form>
+
+                        <!-- Sil -->
+                        <a th:href="@{/admin/delete/{id}(id=${survey.id})}"
+                           class="btn btn-sm btn-outline-danger"
+                           onclick="return confirm('Silmek istediğinize emin misiniz?')">Sil</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>

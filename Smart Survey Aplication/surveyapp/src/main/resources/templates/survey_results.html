@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout(~{::title}, ~{::section})}">
+<head>
+    <title th:text="${survey.title} + ' - Sonuçlar'">Anket Sonuçları</title>
+</head>
+<body>
+<section>
+    <h2 class="text-center mb-4" th:text="${survey.title} + ' - Anket Sonuçları'">Sonuçlar</h2>
+
+    <div th:each="question : ${survey.questions}" class="mb-4">
+        <h5 th:text="${question.text}" class="fw-bold mb-3">Soru</h5>
+
+        <ul class="list-group">
+            <li th:each="choice : ${question.choices}" class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <span th:text="${choice.text}">Seçenek</span>
+                </div>
+                <div>
+                    <span th:text="${choiceVoteCounts[choice.id]}">0</span> oy
+                    (
+                    <span th:if="${questionTotalVotes[question.id] > 0}"
+                          th:text="${(choiceVoteCounts[choice.id] * 100.0 / questionTotalVotes[question.id]) + '%'}">0%</span>
+                    <span th:if="${questionTotalVotes[question.id] == 0}">0%</span>
+                    )
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-outline-secondary">← Ana Sayfa</a>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="tr" th:fragment="layout(title, content)">
+<head>
+    <meta charset="UTF-8">
+    <title th:replace="${title} ?: 'Anket Uygulaması'">Anket Uygulaması</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Arka plan rengi (görselle uyumlu pastel renk) -->
+    <style>
+        body {
+            background-color: #ffdeb4 !important;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">AnketApp</a>
+        <div class="d-flex">
+            <a class="btn btn-outline-light me-2" href="/login">Giriş</a>
+            <a class="btn btn-outline-light" href="/register">Kayıt</a>
+        </div>
+    </div>
+</nav>
+
+<!-- İçerik Alanı -->
+<div class="container">
+    <div th:replace="${content}">İçerik buraya gelecek</div>
+</div>
+
+</body>
+</html>
