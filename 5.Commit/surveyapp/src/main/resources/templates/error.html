@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Hata</title>
+</head>
+<body>
+<section class="text-center">
+    <h2 class="text-danger mb-4">Bir Hata Oluştu</h2>
+
+    <!-- Hata mesajı dinamik olarak model'den gelir -->
+    <p class="lead" th:if="${error}" th:text="${error}">
+        Beklenmeyen bir hata oluştu.
+    </p>
+
+    <!-- Yedek mesaj (model boşsa) -->
+    <p class="lead" th:unless="${error}">
+        Üzgünüz, işlem tamamlanamadı.
+    </p>
+
+    <div class="mt-4">
+        <a href="/" class="btn btn-outline-secondary">Ana Sayfaya Dön</a>
+    </div>
+</section>
+</body>
+</html>

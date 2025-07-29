@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout(~{::title}, ~{::section})}">
+<head>
+    <title th:text="${survey.title}">Anket Detayı</title>
+</head>
+<body>
+<section>
+    <!-- Anket Başlığı -->
+    <h2 class="text-center mb-4" th:text="${survey.title}">Anket Başlığı</h2>
+
+    <!-- Soru ve şıklar -->
+    <div th:each="question : ${survey.questions}" class="mb-4">
+        <h5 class="fw-bold mb-2" th:text="${question.text}">Soru</h5>
+        <ul class="list-group">
+            <li th:each="choice : ${question.choices}" th:text="${choice.text}" class="list-group-item">
+                Seçenek
+            </li>
+        </ul>
+    </div>
+
+    <!-- Anket yayında değilse -->
+    <div th:if="${!survey.active}" class="alert alert-warning text-center">
+        Bu anket şu anda yayında değil. Oy veremezsiniz.
+    </div>
+
+    <!-- Kullanıcı daha önce katıldıysa -->
+    <div th:if="${alreadyAnswered}" class="alert alert-info text-center">
+        Bu ankete zaten katıldınız. Tekrar oy veremezsiniz.
+    </div>
+
+    <!-- Katılma butonu: sadece aktif ve kullanıcı katılmamışsa -->
+    <form th:if="${survey.active and !alreadyAnswered}"
+          th:action="@{/survey/{id}/answer(id=${survey.id})}"
+          method="get"
+          class="text-center mt-4">
+        <button class="btn btn-primary">Ankete Katıl</button>
+    </form>
+</section>
+</body>
+</html>
