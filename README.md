@@ -28,14 +28,14 @@ Smart Survey, kullanıcıların anket oluşturabileceği ve diğer kullanıcıla
 ## Uygulama ile İlgili Bazı Ekran Görüntüleri
 
 - Mevcut Anketler Sayfası
----<img width="1918" height="868" alt="Screenshot 2025-07-29 225304" src="https://github.com/user-attachments/assets/dacc7d91-8d37-4d03-bd6f-6765a8f42382" />
+<img width="1918" height="868" alt="Screenshot 2025-07-29 225304" src="https://github.com/user-attachments/assets/dacc7d91-8d37-4d03-bd6f-6765a8f42382" />
 <img width="1919" height="794" alt="image" src="https://github.com/user-attachments/assets/b3889c24-0501-44ba-9e54-ef8c5d62e2f5" />
 <img width="1919" height="794" alt="image" src="https://github.com/user-attachments/assets/c6adf2ab-1994-4e37-ae28-80971cdfa89b" />
 Bu sayfa, sisteme kayıtlı tüm aktif anketlerin kullanıcıya listelendiği ana ekrandır. Kullanıcı bu listeden bir ankete tıklayarak detay sayfasına yönlendirilir. Kullanıcı bu anketlerden birisine girerek oyunu kullanabilir ama sadece bir defa oy kullanma hakkı vardır. 
 
 - Login ve Register Sayfaları
-  <img width="1919" height="867" alt="image" src="https://github.com/user-attachments/assets/a3e336d4-0cf2-4977-b0f5-3a7f1589557b" />
-  <img width="1919" height="868" alt="image" src="https://github.com/user-attachments/assets/672f362b-817a-41cd-acad-b17643d3baf5" />
+<img width="1919" height="867" alt="image" src="https://github.com/user-attachments/assets/a3e336d4-0cf2-4977-b0f5-3a7f1589557b" />
+<img width="1919" height="868" alt="image" src="https://github.com/user-attachments/assets/672f362b-817a-41cd-acad-b17643d3baf5" />
 Kullanıcı herhangi bir ankette oy kullanabilmesi için hesabına giriş yapması gerekir. Eğer kayıtlı hesabı yoksa register sayfasından uygulamaya kayıt olabilir.
 
 -Admin Sayfası
